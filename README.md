@@ -4,7 +4,7 @@ Building front-end apps no longer involves rendering a simplified version of a c
 
 ## Breakdown
 
-This dojo wil follow the following structure:
+This dojo will follow the following structure:
 
 - Why do I need FE State Management?
 - What are our objectives?
@@ -17,14 +17,10 @@ We will be building a football (_soccer_) information page. The page will allow 
 
 We will attempt to extend the app by means of `Redux`.
 
-1. League - The selected one
-   When a user selects a league, all context in the application must switch over to the selected league
-2. Team - The nested one
-   When a user selects a team, the context should switch again, but the league context must be kept
-3. Player - The transferred one
-   When a player is transferred to a new team, the context must of the team and or league must change, but the player context must be kept
-4. Match - The scoring one
-   When a match is underway and a player does something that adds a stat, the stat must be reflected on the player, the match, the team and the league
+1. **League - The selected one:** When a user selects a league, all context in the application must switch over to the selected league
+2. **Team - The nested one:** When a user selects a team, the context should switch again, but the league context must be kept
+3. **Player - The transferred one:** When a player is transferred to a new team, the context of the team and or league must change, but the player context must remain the same
+4. **Match - The scoring one:** When a match is underway and a player does something that adds a stat, the stat must be reflected on the player, the match, the team and the league
 
 ## Preparation
 
