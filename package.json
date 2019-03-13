@@ -1,0 +1,36 @@
+{
+  "name": "react",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.15",
+    "@fortawesome/free-solid-svg-icons": "^5.7.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "axios": "^0.18.0",
+    "prop-types": "^15.7.2",
+    "react": "16.8.3",
+    "react-dom": "16.8.3",
+    "react-redux": "6.0.1",
+    "react-router-dom": "^4.3.1",
+    "react-select": "^2.4.1",
+    "redux": "4.0.1",
+    "redux-thunk": "2.3.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "node-es-module-loader": "^0.3.8",
+    "node-sass": "latest",
+    "react-scripts": "latest"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

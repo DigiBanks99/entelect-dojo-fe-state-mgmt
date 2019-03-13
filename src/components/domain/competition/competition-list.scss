@@ -1,0 +1,37 @@
+.competition-list {
+  padding: 0;
+
+  ul, .card-content {
+    padding: 0;
+    margin: 0;
+  }
+
+  .competition-list-header {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: 'name crest country match-day';
+    align-items: center;
+
+    font-weight: bold;
+    height: 50px;
+    padding: 10px;
+
+    .name {
+      grid-area: name;
+    }
+
+    .crest {
+      grid-area: crest;
+      justify-self: center;
+    }
+
+    .country {
+      grid-area: country;
+    }
+
+    .match-day {
+      grid-area: match-day;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+@import 'components/../variables';
+
+.competition-teams {
+  border-top: 1px solid $primary-extralight;
+
+  .teams {
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .team {
+    display: grid;
+
+    grid-template-rows: auto;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 'crest name';
+    align-items: center;
+
+    padding: 10px 0;
+
+    .crest {
+      grid-area: crest;
+
+      justify-self: end;
+      padding-right: 5px;
+    }
+
+    .name {
+      grid-area: name;
+
+      justify-self: start;
+      padding-left: 5px;
+    }
+  }
+}

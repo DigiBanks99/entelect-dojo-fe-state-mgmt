@@ -1,0 +1,41 @@
+@import 'components/../variables';
+
+.team-list-item {
+  display: grid;
+  grid-template-columns: 1fr 170px repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-template-areas: 'name crest founded country';
+  align-items: center;
+
+  border-top: 1px solid $primary-extralight;
+  height: 70px;
+  padding: 10px;
+  color: $tertiary-text;
+  font-weight: normal;
+
+  &:hover {
+    background-color: $tertiary;
+  }
+
+  .team-name {
+    grid-area: name;
+  }
+
+  .team-crest {
+    grid-area: crest;
+    justify-self: center;
+    display: flex;
+
+    .img {
+      justify-self: center;
+    }
+  }
+
+  .team-founded {
+    grid-area: founded;
+  }
+
+  .team-country {
+    grid-area: country;
+  }
+}

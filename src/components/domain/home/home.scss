@@ -1,0 +1,40 @@
+@import 'variables';
+
+.home {
+  display: grid;
+
+  grid-template-rows: auto 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    'welcome welcome'
+    'left      right';
+  grid-gap: 10px;
+  justify-content: center;
+  align-content: center;
+
+  .welcome {
+    grid-area: welcome;
+    display: flex;
+  }
+
+  .left {
+    grid-area: left;
+    display: flex;
+  }
+
+  .right {
+    grid-area: right;
+    display: flex;
+  }
+}
+
+@media screen and (max-width: $responsive-width-small) {
+  .home {
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'welcome'
+      'left'
+      'right';
+  }
+}

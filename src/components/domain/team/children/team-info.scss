@@ -1,0 +1,49 @@
+@import 'components/../variables';
+
+.team-info {
+  display: grid;
+
+  grid-template-rows: 1fr;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  grid-template-areas: 'crest info .';
+
+  margin-bottom: 20px;
+
+  .crest {
+    grid-area: crest;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .img {
+      max-width: 250px;
+    }
+  }
+
+  .info {
+    grid-area: info;
+
+    .key-value-display,
+    .value {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .info-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: $responsive-width-small) {
+  .team-info {
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'crest'
+      'info';
+  }
+}

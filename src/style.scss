@@ -1,0 +1,27 @@
+@import 'reset';
+@import 'variables';
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: $font;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+}
+
+a {
+  text-decoration: none;
+  color: $secondary;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+p {
+  margin: 10px;
+  font-size: 12px;
+}

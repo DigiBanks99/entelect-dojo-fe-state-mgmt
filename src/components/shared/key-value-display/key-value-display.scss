@@ -1,0 +1,25 @@
+.key-value-display {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-template-areas: 'key value';
+
+  height: 20px;
+  padding: 10px 0;
+
+  .key {
+    grid-area: key;
+    display: flex;
+
+    font-weight: bold;
+    justify-self: end;
+    padding-right: 5px;
+  }
+
+  .value {
+    grid-area: value;
+    display: flex;
+    justify-self: start;
+    padding-left: 5px;
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "competitions": [
+    {
+      "id": 2016,
+      "matchesUrl": "./matches.2016.json"
+    },
+    {
+      "id": 2021,
+      "matchesUrl": "./matches.2021.json"
+    },
+    {
+      "id": 2015,
+      "matchesUrl": "./matches.2015.json"
+    },
+    {
+      "id": 2002,
+      "matchesUrl": "./matches.2002.json"
+    },
+    {
+      "id": 2019,
+      "matchesUrl": "./matches.2019.json"
+    },
+    {
+      "id": 2014,
+      "matchesUrl": "./matches.2014.json"
+    }
+  ]
+}

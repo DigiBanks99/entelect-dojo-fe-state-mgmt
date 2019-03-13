@@ -13,10 +13,16 @@ class App extends Component {
       competitions: [],
       teams: [],
       players: [],
-      loading: false,
+      matches: [],
+      loading: {
+        teams: false,
+        matches: false
+      },
       progress: {
-        end: 0,
-        position: 0
+        endTeams: 0,
+        endMatches: 0,
+        positionTeams: 0,
+        positionMatches: 0
       }
     };
 
@@ -52,9 +58,38 @@ class App extends Component {
       .then(response => {
         const competitions = response.data.competitions;
         this.setData('competitions', competitions);
+        this.getMatches(extractService, competitions);
         this.getCompetitionTeams(extractService, competitions);
       })
       .catch(err => console.error(err));
+  }
+
+  getMatches(extractService, competitions) {
+    const promises = [];
+
+    this.setData('loading.matches', true);
+    this.setData('progress.endMatches', competitions.length);
+    this.setData('progress.positionMatches', 0);
+
+    competitions.forEach(competition =>
+      promises.push(extractService.getMatches(competition.id))
+    );
+
+    Promise.all(promises)
+      .then(async responses => {
+        let allMatches = [];
+        responses.forEach((response, index) => {
+          allMatches = [...allMatches, ...response.data.matches];
+          this.setData('loading.matches', false);
+          this.setData('progress.endMatches', competitions.length);
+          this.setData('progress.positionMatches', index + 1);
+        });
+        this.setData('matches', allMatches);
+      })
+      .catch(err => {
+        this.setData('loading.matches', false);
+        console.error(err);
+      });
   }
 
   getCompetitionTeams(extractService, competitions) {
@@ -72,17 +107,26 @@ class App extends Component {
         this.setData('teams', teams);
         let offset = 0;
 
-        this.setData('loading', true);
+        this.setData('loading.teams', true);
         while (offset < teams.length) {
-          this.setData('progress', { end: teams.length, position: offset });
+          this.setData('progress.endTeams', teams.length);
+          this.setData('progress.positionTeams', offset);
           await this.sleep(61000);
           this.getTeams(extractService, teams, offset);
           offset += 10;
         }
-        this.setData('progress', { end: teams.length, position: teams.length });
-        this.setData('loading', false);
+        this.setData('progress.endTeams', teams.length);
+        this.setData('progress.positionTeams', teams.length);
+        this.setData('loading.teams', false);
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        this.setData('loading.teams', false);
+        if (err.code === '429') {
+          this.sleep(30000);
+          this.getCompetitionTeams(extractService, competitions);
+        }
+        console.error(err);
+      });
   }
 
   getTeams(extractService, teams, offset) {
@@ -149,12 +193,25 @@ class App extends Component {
       teams,
       players,
       loading,
-      progress
+      progress,
+      matches
     } = this.state;
-    const jsonAreas = JSON.stringify(areas, null, 2);
-    const jsonCompetitions = JSON.stringify(competitions, null, 2);
-    const jsonTeams = JSON.stringify(teams, null, 2);
-    const jsonPlayers = JSON.stringify(players, null, 2);
+
+    const jsonAreas = JSON.stringify({ areas: areas }, null, 2);
+    const jsonCompetitions = JSON.stringify(
+      { competitions: competitions },
+      null,
+      2
+    );
+    const jsonTeams = JSON.stringify({ teams: teams }, null, 2);
+    const jsonPlayers = JSON.stringify({ players: players }, null, 2);
+    const jsonMatches = JSON.stringify({ matches: matches }, null, 2);
+
+    const displayProgress = {
+      end: progress.endMatches + progress.endTeams,
+      position: progress.positionMatches + progress.positionTeams
+    };
+    const displayLoading = loading.teams && loading.matches;
 
     return (
       <div className='app'>
@@ -173,28 +230,24 @@ class App extends Component {
           <button className='app-button' onClick={this.getAllData}>
             Get data
           </button>
-          <Loader loading={loading} progress={progress} />
-          <label className='app-label' for='api-token'>
-            Areas
-          </label>
+          <Loader loading={displayLoading} progress={displayProgress} />
+          <label className='app-label'>Areas</label>
           <code>
             <pre>{jsonAreas}</pre>
           </code>
-          <label className='app-label' for='api-token'>
-            Competitions
-          </label>
+          <label className='app-label'>Competitions</label>
           <code>
             <pre>{jsonCompetitions}</pre>
           </code>
-          <label className='app-label' for='api-token'>
-            Teams
-          </label>
+          <label className='app-label'>Matches</label>
+          <code>
+            <pre>{jsonMatches}</pre>
+          </code>
+          <label className='app-label'>Teams</label>
           <code>
             <pre>{jsonTeams}</pre>
           </code>
-          <label className='app-label' for='api-token'>
-            Players
-          </label>
+          <label className='app-label'>Players</label>
           <code>
             <pre>{jsonPlayers}</pre>
           </code>

@@ -1,0 +1,9 @@
+{
+  /**
+   * Recommendations
+   */
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "christian-kohler.path-intellisense"
+  ]
+}

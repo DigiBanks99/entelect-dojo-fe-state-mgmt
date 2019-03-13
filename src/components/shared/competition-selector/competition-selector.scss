@@ -1,0 +1,33 @@
+.competition-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex: 1;
+
+  .competition-select-option {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 40px;
+    grid-template-areas: 'emblem code';
+
+    .emblem,
+    .code {
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      width: 100%;
+    }
+
+    .emblem {
+      grid-area: 'emblem';
+      max-width: 25px;
+    }
+
+    .code {
+      grid-area: 'code';
+    }
+  }
+}

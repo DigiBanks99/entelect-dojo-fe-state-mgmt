@@ -1,0 +1,43 @@
+@import 'components/../variables';
+
+.competition-list-item {
+  display: flex;
+
+  border-top: 1px solid $primary-extralight;
+
+  .competition-list-item-link {
+    flex: 1;
+
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: 'name crest country match-day';
+    align-items: center;
+
+    color: $tertiary-text;
+    font-weight: normal;
+    height: 70px;
+    padding: 10px;
+
+    &:hover {
+      background-color: $tertiary;
+    }
+
+    .name {
+      grid-area: name;
+    }
+
+    .crest {
+      grid-area: crest;
+      justify-self: center;
+    }
+
+    .country {
+      grid-area: country;
+    }
+
+    .match-day {
+      grid-area: match-day;
+    }
+  }
+}

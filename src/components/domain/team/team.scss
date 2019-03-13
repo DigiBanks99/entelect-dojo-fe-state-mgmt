@@ -1,0 +1,39 @@
+@import 'components/../variables';
+
+.team .card-content {
+  display: grid;
+
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'info'
+    'players';
+
+  .team-info {
+    grid-area: info;
+  }
+
+  .team-players {
+    grid-area: players;
+  }
+
+  .caption {
+    display: flex;
+    justify-content: center;
+
+    color: $secondary;
+    font-weight: bold;
+    font-size: larger;
+    margin: 20px 0;
+  }
+}
+
+@media screen and (max-width: $responsive-width-small) {
+  .team .card-content {
+    grid-template-rows: 2fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'info'
+      'players';
+  }
+}

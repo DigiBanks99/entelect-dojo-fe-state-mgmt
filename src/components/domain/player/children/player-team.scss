@@ -1,0 +1,49 @@
+@import 'components/../variables';
+
+.player-team {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border-right: 1px solid $primary-extralight;
+
+  li {
+    display: grid;
+
+    grid-template-rows: 1fr;
+    grid-template-columns: reepeat(2, 1fr);
+    grid-template-areas: 'description value';
+    align-items: center;
+
+    height: 70px;
+
+    .description {
+      grid-area: description;
+      justify-self: end;
+
+      padding-right: 10px;
+      font-weight: bold;
+    }
+
+    .value {
+      grid-area: value;
+      align-items: center;
+      justify-content: space-around;
+      display: flex;
+
+      .name {
+        padding-left: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $responsive-width-small) {
+  .player-team {
+    border-bottom: 1px solid $primary-extralight;
+
+    border-right: unset;
+  }
+}

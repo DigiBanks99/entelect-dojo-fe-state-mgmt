@@ -1,0 +1,8 @@
+.main {
+  grid-area: main;
+  padding: 10px;
+
+  &> * {
+    height: 100%;
+  }
+}

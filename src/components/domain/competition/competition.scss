@@ -1,0 +1,58 @@
+@import 'components/../variables';
+
+.competition {
+  .card-content {
+    display: grid;
+    grid-template-rows: 0.1fr auto;
+    grid-template-columns: 0.5fr 1.5fr 0.5fr;
+    grid-template-areas:
+      'emblem info .'
+      'teams teams teams';
+
+    .emblem {
+      grid-area: emblem;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .img {
+        max-width: 250px;
+      }
+    }
+
+    .info {
+      grid-area: info;
+    }
+
+    .competition-teams {
+      grid-area: teams;
+    }
+  }
+
+  .caption {
+    display: flex;
+    justify-content: center;
+
+    color: $secondary;
+    font-weight: bold;
+    font-size: larger;
+    margin: 20px 0;
+  }
+}
+
+@media screen and (max-width: $responsive-width-small) {
+  .competition .card-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas:
+      'emblem'
+      'info'
+      'teams';
+
+    .emblem,
+    .info {
+      border-bottom: 1px solid $primary-extralight;
+    }
+  }
+}

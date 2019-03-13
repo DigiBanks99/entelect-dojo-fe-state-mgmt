@@ -1,0 +1,71 @@
+@import 'components/../variables';
+
+.player-info {
+  display: grid;
+
+  grid-template-rows: 1fr;
+  grid-template-columns: 0.5fr 1.5fr;
+  grid-template-areas: 'player-image player-details';
+
+  border-bottom: 1px solid $primary-extralight;
+  padding-bottom: 20px;
+
+  .player-image {
+    grid-area: player-image;
+    justify-self: center;
+    align-self: center;
+
+    font-size: 250px;
+    color: $primary-light;
+  }
+
+  .player-details {
+    grid-area: player-details;
+    align-self: center;
+
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: grid;
+
+      grid-template-rows: 1fr;
+      grid-template-columns: reepeat(2, 1fr);
+      grid-template-areas: 'description value';
+
+      height: 50px;
+
+      .description {
+        grid-area: description;
+        justify-self: end;
+        align-self: center;
+
+        font-weight: bold;
+      }
+
+      .value {
+        grid-area: value;
+        justify-self: start;
+        align-items: center;
+        justify-content: space-around;
+        display: flex;
+
+        padding-left: 10px;
+
+        .name {
+          padding-left: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $responsive-width-small) {
+  .player-info {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+      'player-image'
+      'player-details';
+  }
+}

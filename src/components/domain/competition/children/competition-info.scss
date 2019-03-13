@@ -1,0 +1,16 @@
+.info {
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  .info-list {
+    display: flex;
+    flex-direction: column;
+
+    .key-value-display {
+      list-style: none;
+    }
+  }
+}

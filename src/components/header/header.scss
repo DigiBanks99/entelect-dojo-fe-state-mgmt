@@ -1,0 +1,62 @@
+@import 'components/../variables';
+
+.header {
+  grid-area: header;
+
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 0.3fr 1.5fr 0.4fr;
+  grid-template-areas: 'brand nav context';
+
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  height: $header-height;
+  width: 100%;
+
+  background-color: $primary;
+  box-shadow: 0 2px 4px $primary-light;
+  color: $primary-text;
+
+  .brand,
+  .nav,
+  .context {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+  }
+
+  .brand {
+    grid-area: brand;
+    justify-self: start;
+
+    color: $secondary;
+    min-width: 126px;
+    padding-left: 15px;
+    font-size: 25px;
+
+    svg {
+      padding-right: 10px;
+    }
+
+    a {
+      color: $secondary;
+    }
+  }
+
+  .nav {
+    grid-area: nav;
+    justify-self: end;
+  }
+
+  .context {
+    grid-area: context;
+    justify-self: end;
+
+    color: $secondary;
+    width: 100%;
+  }
+}

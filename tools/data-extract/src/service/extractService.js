@@ -9,7 +9,8 @@ class ExtractService {
 
   defaultGetRequest = {
     method: 'GET',
-    url: 'http://api.football-data.org/v2/',
+    url:
+      'https://data-ui.football-data.org/fd/' /*'http://api.football-data.org/v2/'*/,
     headers: { ApiTokenHeader: null }
   };
 
@@ -46,6 +47,15 @@ class ExtractService {
 
   async getTeam(team) {
     const url = `${this.defaultGetRequest.url}teams/${team}`;
+    const apiRequest = { ...this.defaultGetRequest, url };
+
+    return await axios(apiRequest);
+  }
+
+  async getMatches(competitionId) {
+    const url = `${
+      this.defaultGetRequest.url
+    }competitions/${competitionId}/matches`;
     const apiRequest = { ...this.defaultGetRequest, url };
 
     return await axios(apiRequest);

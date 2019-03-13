@@ -1,0 +1,48 @@
+.context-selector {
+  display: grid;
+
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas: 'competition match-week';
+  grid-gap: 10px;
+
+  padding: 0 10px;
+  width: 100%;
+
+  > div,
+  > div > div,
+  > div > div > div {
+    width: 100%;
+  }
+
+  .competition {
+    grid-area: competition;
+    display: flex;
+  }
+
+  .match-week {
+    grid-area: match-week;
+
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 60px 1fr;
+    grid-template-areas: 'caption match-week-selector';
+    grid-gap: 10px;
+
+    .match-week-selector {
+      grid-area: match-week-selector;
+    }
+
+    .caption {
+      grid-area: caption;
+    }
+  }
+
+  .competition,
+  .match-week {
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+  }
+}

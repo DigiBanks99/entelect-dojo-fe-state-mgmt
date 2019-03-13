@@ -1,0 +1,33 @@
+@import 'components/../variables';
+
+.footer {
+  grid-area: footer;
+
+  padding: 2px 10px;
+  background-color: $primary-light;
+  color: $primary-text;
+  font-size: 10px;
+
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr repeat(2, auto);
+  grid-template-areas: 'description trademark year';
+
+  .description {
+    grid-area: description;
+    justify-self: start;
+  }
+
+  .trademark {
+    grid-area: trademark;
+    justify-self: end;
+    max-width: 100px;
+    padding-right: 0.4em;
+  }
+
+  .year {
+    grid-area: year;
+    justify-self: end;
+    max-width: 100px;
+  }
+}

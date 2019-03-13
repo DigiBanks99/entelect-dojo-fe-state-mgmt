@@ -1,0 +1,36 @@
+.player-list {
+  &.card .card-content {
+    padding: 0;
+  }
+
+  .player-list-header {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr 0.5fr 0.5fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'name team nationality shirt-number';
+    align-items: center;
+
+    min-height: 40px;
+    font-weight: bold;
+    padding: 10px;
+
+    .name {
+      grid-area: name;
+    }
+
+    .team {
+      grid-area: team;
+      justify-self: auto;
+      padding-left: 30px;
+    }
+
+    .nationality {
+      grid-area: nationality;
+    }
+
+    .shirt-number {
+      grid-area: shirt-number;
+      justify-self: end;
+    }
+  }
+}
