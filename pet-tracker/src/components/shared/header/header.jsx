@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import { Svgs } from './../../../resources';
+import { AnimalIcon } from 'components/shared/animal-icon';
+import { Animals as AnimalConsts } from 'app.constants';
 import './header.scss';
 
 class Header extends Component {
@@ -8,14 +9,9 @@ class Header extends Component {
     return (
       <AppBar>
         <Toolbar>
-          <div>
-            // Move this out to a component on its own. Maybe pass in a string
-            and then get the image. Not sure. In a way that it makes sense for
-            redux
-            <Svgs.Animals.Cat height={50} />
-          </div>
+          <AnimalIcon animal={AnimalConsts.CAT} />
           <Typography variant='h6' color='inherit'>
-            News
+            Name
           </Typography>
         </Toolbar>
       </AppBar>
