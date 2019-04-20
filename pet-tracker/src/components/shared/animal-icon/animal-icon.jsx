@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Animals as AnimalConsts } from 'app.constants';
 import { Svgs } from 'resources';
 
-const AnimalIcon = ({ animal, height, width }) => {
+function AnimalIcon({ animal, height, width }) {
   switch (animal) {
     case AnimalConsts.CAT:
       return <Svgs.Animals.Cat height={height} width={width} />;
@@ -12,7 +12,7 @@ const AnimalIcon = ({ animal, height, width }) => {
     default:
       return <div>Invalid</div>;
   }
-};
+}
 
 AnimalIcon.propTypes = {
   animal: PropTypes.oneOf(Object.values(AnimalConsts)).isRequired,
