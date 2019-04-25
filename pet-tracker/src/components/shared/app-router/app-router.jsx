@@ -4,7 +4,8 @@ import {
   Home,
   FoodContainer,
   ActivityContainer,
-  PetDashboard
+  PetDashboard,
+  Details
 } from 'components/pages';
 import { Grid } from '@material-ui/core';
 
@@ -13,9 +14,10 @@ function AppRouter() {
     <Grid container className='layout'>
       <Router>
         <Route path='/' exact component={Home} />
-        <Route path='/:petName/dashboard' component={PetDashboard} />
-        <Route path='/:petName/food' component={FoodContainer} />
-        <Route path='/:petName/activity' component={ActivityContainer} />
+        <Route path='/:petName/details' exact component={Details} />
+        <Route path='/:petName/dashboard' exact component={PetDashboard} />
+        <Route path='/:petName/food' exact component={FoodContainer} />
+        <Route path='/:petName/activity' exact component={ActivityContainer} />
       </Router>
     </Grid>
   );

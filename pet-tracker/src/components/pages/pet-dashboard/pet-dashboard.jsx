@@ -14,7 +14,7 @@ class PetDashboard extends Component {
     return (
       <Grid container className='home' direction='column' spacing={8}>
         <Grid item>
-          <LinkCard to={`/${petName}/dashboard`} title='Details' icon='tags' />
+          <LinkCard to={`/${petName}/details`} title='Details' icon='tags' />
         </Grid>
         <Grid item>
           <LinkCard to={`/${petName}/food`} title='Food' icon='bone' />
