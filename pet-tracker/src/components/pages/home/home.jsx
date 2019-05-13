@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Grid } from '@material-ui/core';
+import { Grid, Fab, withStyles } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
+import { AnimalService } from '../../services/animal.service';
+
+const styles = theme => ({
+  fab: {
+    position: 'absolute',
+    right: 2 * theme.spacing.unit,
+    bottom: 2 * theme.spacing.unit
+  },
+  fabLink: {
+    textDecoration: 'none',
+    color: theme.palette.background.paper
+  }
+});
 
 class Home extends Component {
   constructor(props) {
     super(props);
 
-    this.state = props;
+    this.state = { pets: AnimalService.getAnimals() };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -23,21 +37,28 @@ class Home extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     const { pets } = this.state;
     return (
       <Grid container className='home' direction='column' spacing={8}>
         {this.renderPets(pets)}
+        <Fab className={classes.fab} color='secondary'>
+          <Link to='/new' className={classes.fabLink}>
+            <AddIcon />
+          </Link>
+        </Fab>
       </Grid>
     );
   }
 }
 
 Home.propType = {
+  classes: PropTypes.object.isRequired,
   pets: PropTypes.array
 };
 
 Home.defaultProps = {
-  pets: [{ name: 'Chewy' }, { name: 'Lika' }, { name: 'Crookshanks' }]
+  pets: []
 };
 
-export default Home;
+export default withStyles(styles, { withTheme: true })(Home);

@@ -9,6 +9,12 @@ function AnimalIcon({ animal, height, width }) {
       return <Svgs.Animals.Cat height={height} width={width} />;
     case AnimalConsts.DOG:
       return <Svgs.Animals.Dog height={height} width={width} />;
+    case AnimalConsts.GOLDFISH:
+      return <Svgs.Animals.Goldfish height={height} width={width} />;
+    case AnimalConsts.MOUSE:
+      return <Svgs.Animals.Mouse height={height} width={width} />;
+    case AnimalConsts.PARROT:
+      return <Svgs.Animals.Parrot height={height} width={width} />;
     default:
       return <div>Invalid</div>;
   }

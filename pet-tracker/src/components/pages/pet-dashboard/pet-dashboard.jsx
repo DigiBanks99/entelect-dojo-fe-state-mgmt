@@ -10,7 +10,7 @@ class PetDashboard extends Component {
         params: { petName }
       }
     } = this.props;
-    console.log(this.props);
+
     return (
       <Grid container className='home' direction='column' spacing={8}>
         <Grid item>
