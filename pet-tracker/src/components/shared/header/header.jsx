@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { AnimalIcon } from 'components/shared/animal-icon';
 import { Animals as AnimalConsts } from 'app.constants';
@@ -9,6 +10,7 @@ class Header extends Component {
     return (
       <AppBar>
         <Toolbar>
+          <NavLink to='/'>Home</NavLink>
           <AnimalIcon animal={AnimalConsts.CAT} />
           <Typography variant='h6' color='inherit'>
             Name

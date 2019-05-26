@@ -1,12 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  withStyles
-} from '@material-ui/core';
+import { Card, CardContent, Typography, withStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 const styles = theme => ({
@@ -34,9 +28,9 @@ function LinkCard({ to, title, icon, children, classes }) {
   return (
     <Card>
       <Link to={to} className={classes.card}>
-        <CardMedia className={classes.icon}>
-          <i className={`fa fa-4x fa-${icon}`} />
-        </CardMedia>
+        <div className={classes.icon}>
+          <em className={`fa fa-4x fa-${icon}`} />
+        </div>
         <div className={classes.content}>
           <CardContent className={classes.details}>
             <Typography className='link-card__title' variant='h6'>

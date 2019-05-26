@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import {
   TextField,
   FormControl,
   InputLabel,
   Select,
   Input,
-  MenuItem
+  MenuItem,
+  Button
 } from '@material-ui/core';
 import { Animals as AnimalConsts } from 'app.constants';
 import AnimalIcon from '../../shared/animal-icon/animal-icon';
+import { AnimalService } from '../../services/animal.service';
 
 class DetailsForm extends Component {
   constructor(props) {
@@ -18,13 +21,23 @@ class DetailsForm extends Component {
       type: AnimalConsts.DOG,
       birthDate: undefined
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange = event => {
+  handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     });
-  };
+  }
+
+  handleSubmit(event) {
+    AnimalService.instance.updateAnimal({
+      ...this.state,
+      birthday: new Date(this.state.birthday)
+    });
+  }
 
   renderAnimalSelect() {
     return Object.keys(AnimalConsts).map(animalKey =>
@@ -41,21 +54,15 @@ class DetailsForm extends Component {
   }
 
   render() {
-    const { name, birthDate, type } = this.state;
+    const { type, name } = this.state;
+    const to = `/${name}/dashboard`;
     return (
       <form noValidate>
+        <TextField name='name' label='Name' onChange={this.handleChange} />
         <TextField
-          id='name'
-          type='text'
-          label='Name'
-          value={name}
-          onChange={this.handleChange}
-        />
-        <TextField
-          id='date'
+          name='birthday'
           type='date'
           label='Birth Date'
-          value={birthDate}
           onChange={this.handleChange}
         />
         <FormControl>
@@ -68,6 +75,9 @@ class DetailsForm extends Component {
             {this.renderAnimalSelect()}
           </Select>
         </FormControl>
+        <Link to={to} onClick={this.handleSubmit}>
+          <Button type='submit'>Save</Button>
+        </Link>
       </form>
     );
   }

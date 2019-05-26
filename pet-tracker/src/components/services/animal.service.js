@@ -1,31 +1,64 @@
 import { isNullOrUndefined } from 'util';
+import { Pet } from '../../models/pet';
+import { Animals as AnimalConst } from '../../app.constants';
 
-const animals = [];
+const singleton = Symbol();
+const singletonEnforcer = Symbol();
+
+function buildPet(name, birthday, type) {
+  const p = new Pet();
+  p.name = name;
+  p.birthday = new Date(birthday);
+  p.type = type;
+  return p;
+}
 
 class AnimalService {
-  static getAnimals() {
-    return animals;
+  constructor(enforcer) {
+    if (enforcer !== singletonEnforcer)
+      throw Error('Cannot construct singleton');
+
+    const chewy = buildPet('Chewy', '2017-08-29', AnimalConst.DOG);
+    const crookshanks = buildPet('Crookshanks', '1998-05-16', AnimalConst.CAT);
+    const polly = buildPet('Polly', '2003-11-02', AnimalConst.PARROT);
+    this.animals = [chewy, crookshanks, polly];
   }
 
-  static addAnimal(animal) {
-    if (animals.indexOf(animal) >= 0) throw new Error('Animal already added.');
-
-    animals.push(animal);
+  static get instance() {
+    if (!this[singleton]) {
+      this[singleton] = new AnimalService(singletonEnforcer);
+    }
+    return this[singleton];
   }
 
-  static removeAnimal(animal) {
-    const index = animals.indexOf(animal);
+  getAnimals() {
+    return this.animals;
+  }
+
+  getAnimal(name) {
+    return this.animals.find(animal => animal.name === name);
+  }
+
+  addAnimal(animal) {
+    if (this.animals.indexOf(animal) >= 0)
+      throw new Error('Animal already added.');
+
+    this.animals.push(animal);
+  }
+
+  removeAnimal(animal) {
+    const index = this.animals.indexOf(animal);
     if (index < 0) throw new Error('The animal does not exist.');
 
-    animals.splice(index, 1);
+    this.animals.splice(index, 1);
   }
 
-  static updateAnimal(updatedAnimal) {
-    let ref = animals.find(animal => animal.name === updatedAnimal.name);
-    if (isNullOrUndefined(ref))
-      throw new Error(
-        'The animal reference could not be found. Did you change the name?'
-      );
+  updateAnimal(updatedAnimal) {
+    let ref = this.animals.find(animal => animal.name === updatedAnimal.name);
+    if (isNullOrUndefined(ref)) {
+      this.addAnimal(updatedAnimal);
+      return;
+    }
     ref = updatedAnimal;
   }
 }

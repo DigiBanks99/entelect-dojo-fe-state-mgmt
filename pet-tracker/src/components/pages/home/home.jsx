@@ -18,16 +18,6 @@ const styles = theme => ({
 });
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { pets: AnimalService.getAnimals() };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({ pets: nextProps.pets });
-  }
-
   renderPets(pets = []) {
     return pets.map(pet => (
       <Grid item key={pet.name}>
@@ -38,7 +28,7 @@ class Home extends Component {
 
   render() {
     const { classes } = this.props;
-    const { pets } = this.state;
+    const pets = AnimalService.instance.getAnimals();
     return (
       <Grid container className='home' direction='column' spacing={8}>
         {this.renderPets(pets)}
