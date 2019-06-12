@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Grid, withStyles } from '@material-ui/core';
+import {
+  Grid,
+  withStyles,
+  List,
+  ListItem,
+  ListItemText
+} from '@material-ui/core';
 
 const styles = theme => ({});
 
@@ -8,7 +14,11 @@ class Activity extends Component {
   render() {
     return (
       <Grid className='activity' item>
-        Activity
+        <List>
+          <ListItem>
+            <ListItemText primary={'placeholder'} />
+          </ListItem>
+        </List>
       </Grid>
     );
   }
