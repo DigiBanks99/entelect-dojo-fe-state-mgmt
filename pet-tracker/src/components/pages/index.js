@@ -1,15 +1,18 @@
 import { Home } from './home';
-import { FoodContainer, Food } from './food';
-import { ActivityContainer, Activity } from './activity';
+import { FoodContainer, Food, FoodForm } from './food';
+import { ActivityContainer, Activity, ActivityForm } from './activity';
 import { PetDashboard } from './pet-dashboard';
-import { Details } from './details';
+import { Details, DetailsForm } from './details';
 
 export {
   Home,
   FoodContainer,
   Food,
+  FoodForm,
   ActivityContainer,
   Activity,
+  ActivityForm,
   PetDashboard,
-  Details
+  Details,
+  DetailsForm
 };

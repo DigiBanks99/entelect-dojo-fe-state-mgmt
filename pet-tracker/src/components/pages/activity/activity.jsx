@@ -10,8 +10,7 @@ import {
   ListItemText
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import { ActivityService } from '../../services';
-import { ActivityModel } from '../../../models/activity';
+import { ActivityService } from 'components/services';
 
 const styles = theme => ({
   fab: {
@@ -33,10 +32,6 @@ class Activity extends Component {
     this.state = {
       petName: petName
     };
-    const act = new ActivityModel();
-    act.date = new Date();
-    act.description = 'Some activity';
-    ActivityService.instance.addActivity(petName, act);
   }
 
   renderActivities(activities) {
@@ -58,7 +53,7 @@ class Activity extends Component {
       <Grid className='activity' item>
         <List>{this.renderActivities(activities)}</List>
         <Fab className={classes.fab} color='secondary'>
-          <Link to='activity/new' className={classes.fabLink}>
+          <Link to={`/${petName}/activity/new`} className={classes.fabLink}>
             <AddIcon />
           </Link>
         </Fab>

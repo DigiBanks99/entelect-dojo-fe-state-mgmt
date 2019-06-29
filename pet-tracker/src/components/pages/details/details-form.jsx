@@ -10,8 +10,8 @@ import {
   Button
 } from '@material-ui/core';
 import { Animals as AnimalConsts } from 'app.constants';
-import AnimalIcon from '../../shared/animal-icon/animal-icon';
-import { AnimalService } from '../../services/animal.service';
+import AnimalIcon from 'components/shared/animal-icon/animal-icon';
+import { AnimalService } from 'components/services/animal.service';
 
 class DetailsForm extends Component {
   constructor(props) {
@@ -70,8 +70,7 @@ class DetailsForm extends Component {
           <Select
             value={type}
             onChange={this.handleChange}
-            input={<Input id='type' name='type' />}
-          >
+            input={<Input id='type' name='type' />}>
             {this.renderAnimalSelect()}
           </Select>
         </FormControl>

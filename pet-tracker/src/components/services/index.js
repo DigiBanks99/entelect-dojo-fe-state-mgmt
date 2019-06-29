@@ -1,4 +1,5 @@
 import { AnimalService } from './animal.service';
 import { ActivityService } from './activity.service';
+import { FoodService } from './food.service';
 
-export { AnimalService, ActivityService };
+export { AnimalService, ActivityService, FoodService };
