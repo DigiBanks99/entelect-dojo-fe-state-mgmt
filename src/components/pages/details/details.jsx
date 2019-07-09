@@ -30,7 +30,7 @@ class Details extends Component {
       <List>
         <ListItem className={classes.container}>
           <ListItemIcon className={classes.icon}>
-            <AnimalIcon animal={pet.type} />
+            <AnimalIcon animal={pet.type} height={80} width={80} />
           </ListItemIcon>
           <ListItemText
             primary={pet.name}

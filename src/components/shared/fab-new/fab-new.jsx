@@ -12,7 +12,9 @@ const styles = theme => ({
   },
   fabLink: {
     textDecoration: 'none',
-    color: theme.palette.background.paper
+    color: theme.palette.background.paper,
+    lineHeight: '24px',
+    height: '24px'
   }
 });
 

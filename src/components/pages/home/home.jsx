@@ -1,28 +1,42 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, ListItem, List, ListItemText } from '@material-ui/core';
+import {
+  withStyles,
+  List,
+  ListItemText,
+  ListItemIcon
+} from '@material-ui/core';
 import { AnimalService } from 'components/services';
 import { ListItemLink, FabNew } from 'components/shared';
+import AnimalIcon from '../../shared/animal-icon/animal-icon';
 
 const styles = theme => ({
   list: {
     backgroundColor: theme.palette.background.paper
+  },
+  icon: {
+    width: 151,
+    padding: 5,
+    textAlign: 'center'
   }
 });
 
-function PetListItem({ name }) {
+function PetListItem({ name, type, className }) {
   return (
-    <ListItem key={name}>
-      <ListItemLink to={`/${name}/dashboard`}>
-        <ListItemText primary={name} />
-      </ListItemLink>
-    </ListItem>
+    <ListItemLink to={`/${name}/dashboard`}>
+      <ListItemIcon className={className}>
+        <AnimalIcon animal={type} height={80} width={80} />
+      </ListItemIcon>
+      <ListItemText primary={name} />
+    </ListItemLink>
   );
 }
 
 class Home extends Component {
-  renderPets(pets = []) {
-    return pets.map(pet => <PetListItem key={pet.name} {...pet} />);
+  renderPets(pets = [], classes = {}) {
+    return pets.map(pet => (
+      <PetListItem key={pet.name} {...pet} className={classes.icon} />
+    ));
   }
 
   render() {
@@ -30,9 +44,7 @@ class Home extends Component {
     const pets = AnimalService.instance.getAnimals();
     return (
       <Fragment>
-        <List justify='center' className={classes.list}>
-          {this.renderPets(pets)}
-        </List>
+        <List className={classes.list}>{this.renderPets(pets, classes)}</List>
         <FabNew to='/new' />
       </Fragment>
     );

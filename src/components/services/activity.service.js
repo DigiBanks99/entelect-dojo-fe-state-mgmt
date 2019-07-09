@@ -7,7 +7,9 @@ class ActivityService {
       throw Error('Cannot construct singleton');
     }
 
-    this._activities = {};
+    this._activities = {
+      Chewy: [{ id: 0, description: 'xxx', date: new Date() }]
+    };
     this._currentId = 0;
   }
 
