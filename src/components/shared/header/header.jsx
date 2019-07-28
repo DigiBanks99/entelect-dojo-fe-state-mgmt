@@ -7,11 +7,12 @@ import './header.scss';
 
 class Header extends Component {
   renderNonHome() {
-    const petName = this.props.match.params.petName || 'Chewy';
+    const petName = this.props.match.params.petName || 'TODO';
+    const type = AnimalConsts[this.props.match.params.petType];
     return (
       <Fragment>
         <GoBack />
-        <AnimalIcon animal={AnimalConsts.CAT} />
+        {type && <AnimalIcon animal={type} />}
         <Typography variant='h6' color='inherit'>
           {petName}
         </Typography>

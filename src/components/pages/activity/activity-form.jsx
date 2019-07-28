@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { TextField, Button, withStyles } from '@material-ui/core';
+import { Button, TextField, withStyles } from '@material-ui/core';
 import { ActivityService } from 'components/services/activity.service';
 
 const styles = theme => ({
@@ -80,6 +81,19 @@ class ActivityFormWithStyles extends Component {
     );
   }
 }
+
+ActivityFormWithStyles.propTypes = {
+  classes: PropTypes.shape({
+    form: PropTypes.object,
+    button: PropTypes.object,
+    buttonLink: PropTypes.object
+  }).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      petName: PropTypes.string
+    })
+  })
+};
 
 const ActivityForm = withStyles(styles)(ActivityFormWithStyles);
 export { ActivityForm };

@@ -1,6 +1,6 @@
 import { isNullOrUndefined } from 'util';
-import { Pet } from '../../models/pet';
-import { Animals as AnimalConst } from '../../app.constants';
+import { Pet } from 'models/pet';
+import { Animals as AnimalConst } from 'app.constants';
 
 const singleton = Symbol();
 const singletonEnforcer = Symbol();
@@ -18,10 +18,10 @@ class AnimalService {
     if (enforcer !== singletonEnforcer)
       throw Error('Cannot construct singleton');
 
-    const chewy = buildPet('Chewy', '2017-08-29', AnimalConst.DOG);
-    const crookshanks = buildPet('Crookshanks', '1998-05-16', AnimalConst.CAT);
+    const fido = buildPet('Fido', '2017-08-29', AnimalConst.DOG);
+    const luna = buildPet('Luna', '1998-05-16', AnimalConst.CAT);
     const polly = buildPet('Polly', '2003-11-02', AnimalConst.PARROT);
-    this.animals = [chewy, crookshanks, polly];
+    this.animals = [fido, luna, polly];
   }
 
   static get instance() {

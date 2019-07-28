@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { TextField, Button } from '@material-ui/core';
-import { FoodService } from '../../services';
+import { Button, TextField, withStyles } from '@material-ui/core';
+import { FoodService } from 'components/services';
 
-class FoodForm extends Component {
+const styles = theme => ({
+  form: {
+    padding: theme.spacing(2)
+  },
+  button: {
+    color: theme.palette.background.paper,
+    marginTop: theme.spacing(2)
+  },
+  buttonLink: {
+    textDecoration: 'none'
+  }
+});
+
+class FoodFormWithStyles extends Component {
   constructor(props) {
     super(props);
 
@@ -36,9 +50,11 @@ class FoodForm extends Component {
   render() {
     const { description, date, petName } = this.state;
     const to = `/${petName}/food`;
+    const { classes } = this.props;
     return (
-      <form noValidate>
+      <form noValidate className={classes.form}>
         <TextField
+          fullWidth
           name='description'
           label='Description'
           type='text'
@@ -46,18 +62,42 @@ class FoodForm extends Component {
           onChange={this.handleChanges}
         />
         <TextField
+          fullWidth
           name='date'
           label='Date'
           type='date'
           value={date}
           onChange={this.handleChanges}
         />
-        <Link to={to} onClick={this.handleSubmit}>
-          <Button type='submit'>Save</Button>
+        <Link
+          to={to}
+          onClick={this.handleSubmit}
+          className={classes.buttonLink}>
+          <Button
+            type='submit'
+            variant='contained'
+            className={classes.button}
+            color='secondary'>
+            Save
+          </Button>
         </Link>
       </form>
     );
   }
 }
 
+FoodFormWithStyles.propTypes = {
+  classes: PropTypes.shape({
+    form: PropTypes.object,
+    button: PropTypes.object,
+    buttonLink: PropTypes.object
+  }).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      petName: PropTypes.string
+    })
+  })
+};
+
+const FoodForm = withStyles(styles)(FoodFormWithStyles);
 export default FoodForm;
