@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import {
-  withStyles,
   List,
+  ListItemIcon,
   ListItemText,
-  ListItemIcon
+  withStyles
 } from '@material-ui/core';
 import { AnimalService } from 'components/services';
-import { ListItemLink, FabNew } from 'components/shared';
+import { FabNew, ListItemLink } from 'components/shared';
 import AnimalIcon from '../../shared/animal-icon/animal-icon';
 
 const styles = theme => ({
@@ -22,8 +22,9 @@ const styles = theme => ({
 });
 
 function PetListItem({ name, type, className }) {
+  const to = `/${name}/dashboard`;
   return (
-    <ListItemLink to={`/${name}/dashboard`}>
+    <ListItemLink to={to}>
       <ListItemIcon className={className}>
         <AnimalIcon animal={type} height={80} width={80} />
       </ListItemIcon>

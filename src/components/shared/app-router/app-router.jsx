@@ -1,28 +1,63 @@
-import React, { Fragment } from 'react';
-import { Route } from 'react-router-dom';
 import {
-  Home,
-  FoodContainer,
-  FoodForm,
   ActivityContainer,
   ActivityForm,
-  PetDashboard,
   Details,
-  DetailsForm
+  DetailsForm,
+  FoodContainer,
+  FoodForm,
+  Home,
+  PetDashboard
 } from 'components/pages';
+import React, { Fragment } from 'react';
+import { LayoutRoute } from './layout-route';
 
 function AppRouter() {
   return (
     <Fragment>
-      <Route path='/' exact component={Home} />
-      <Route path='/home' exact component={Home} />
-      <Route path='/:petName/details' exact component={Details} />
-      <Route path='/new' exact component={DetailsForm} />
-      <Route path='/:petName/dashboard' exact component={PetDashboard} />
-      <Route path='/:petName/food' exact component={FoodContainer} />
-      <Route path='/:petName/food/new' exact component={FoodForm} />
-      <Route path='/:petName/activity' exact component={ActivityContainer} />
-      <Route path='/:petName/activity/new' exact component={ActivityForm} />
+      <LayoutRoute path='/' exact component={Home} />
+      <LayoutRoute path='/home' exact component={Home} />
+      <LayoutRoute
+        path='/:petName/details'
+        exact
+        component={Details}
+        description='Details'
+      />
+      <LayoutRoute
+        path='/new'
+        exact
+        component={DetailsForm}
+        description='New pet'
+      />
+      <LayoutRoute
+        path='/:petName/dashboard'
+        exact
+        component={PetDashboard}
+        description='Dashboard'
+      />
+      <LayoutRoute
+        path='/:petName/food'
+        exact
+        component={FoodContainer}
+        description='Food'
+      />
+      <LayoutRoute
+        path='/:petName/food/new'
+        exact
+        component={FoodForm}
+        description='Feeding'
+      />
+      <LayoutRoute
+        path='/:petName/activity'
+        exact
+        component={ActivityContainer}
+        description='Activities'
+      />
+      <LayoutRoute
+        path='/:petName/activity/new'
+        exact
+        component={ActivityForm}
+        description='New activity'
+      />
     </Fragment>
   );
 }

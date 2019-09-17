@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { Animals as AnimalConsts } from 'app.constants';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { Svgs } from 'resources';
 
 function AnimalIcon({ animal, height, width }) {

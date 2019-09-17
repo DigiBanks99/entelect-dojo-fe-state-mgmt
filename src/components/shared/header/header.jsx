@@ -1,41 +1,30 @@
-import React, { Component, Fragment } from 'react';
-import { withRouter } from 'react-router-dom';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import { AnimalIcon, GoBack } from 'components/shared';
-import { Animals as AnimalConsts } from 'app.constants';
 import './header.scss';
+import { AppBar, Toolbar } from '@material-ui/core';
+import { AnimalService } from 'components/services';
+import { HeaderAnimal } from './header-animal';
+import { HeaderHome } from './header-home';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-class Header extends Component {
-  renderNonHome() {
-    const petName = this.props.match.params.petName || 'TODO';
-    const type = AnimalConsts[this.props.match.params.petType];
-    return (
-      <Fragment>
-        <GoBack />
-        {type && <AnimalIcon animal={type} />}
-        <Typography variant='h6' color='inherit'>
-          {petName}
-        </Typography>
-      </Fragment>
-    );
-  }
-
-  renderHome() {
-    return (
-      <Typography variant='h6' color='inherit'>
-        Pet Tracker
-      </Typography>
-    );
-  }
-
-  render() {
-    const isHome = this.props.history.location.pathname === '/';
-    return (
-      <AppBar>
-        <Toolbar>{isHome ? this.renderHome() : this.renderNonHome()}</Toolbar>
-      </AppBar>
-    );
-  }
-}
+const Header = ({ history, match, description }) => {
+  const isHome = history.location.pathname === '/';
+  const petName = match.params.petName;
+  const animal = AnimalService.instance.getAnimal(petName);
+  return (
+    <AppBar>
+      <Toolbar>
+        {isHome ? (
+          <HeaderHome />
+        ) : (
+          <HeaderAnimal
+            type={(animal || { type: 'CAT' }).type}
+            petName={petName}
+            description={description}
+          />
+        )}
+      </Toolbar>
+    </AppBar>
+  );
+};
 
 export default withRouter(Header);

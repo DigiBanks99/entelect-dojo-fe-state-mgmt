@@ -1,8 +1,8 @@
+import './app.scss';
+import { AppRouter, Header } from 'components/shared';
+import { Container, Paper } from '@material-ui/core';
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Header, AppRouter } from 'components/shared';
-import './app.scss';
-import { Container, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
