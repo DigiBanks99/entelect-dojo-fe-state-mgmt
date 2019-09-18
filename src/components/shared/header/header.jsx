@@ -1,5 +1,6 @@
 import './header.scss';
 import { AppBar, Toolbar } from '@material-ui/core';
+import { Animals as AnimalConsts } from 'app.constants';
 import { AnimalService } from 'components/services';
 import { HeaderAnimal } from './header-animal';
 import { HeaderHome } from './header-home';
@@ -17,7 +18,7 @@ const Header = ({ history, match, description }) => {
           <HeaderHome />
         ) : (
           <HeaderAnimal
-            type={(animal || { type: 'CAT' }).type}
+            type={(animal || { type: AnimalConsts.CAT }).type}
             petName={petName}
             description={description}
           />
